@@ -71,13 +71,15 @@ class PantsudriveParser: VideoProviderParser {
                         let videoURL = try URL(string: videoURLString)
                             .tryUnwrap(.decodeError("Video URL"))
                         
+                        let isHLS = videoURL.pathExtension == "m3u8"
+                        
                         callback(
                             BasicPlaybackMedia(
                                 url: videoURL,
                                 parent: episode,
-                                contentType: "video/mp4",
+                                contentType: isHLS ? "application/vnd.apple.mpegurl" : "video/mp4",
                                 headers: [:],
-                                isAggregated: false
+                                isAggregated: isHLS
                         ), nil)
                     } catch { callback(nil, error) }
                 default: callback(nil, response.error ?? NineAnimatorError.unknownError)
