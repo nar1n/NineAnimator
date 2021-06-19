@@ -46,7 +46,7 @@ class NASourceArrayanime: BaseSource, Source, PromiseSource {
     
     override var endpoint: String { "https://arrayanime.com" }
     
-    let vercelEndpoint = URL(string: "https://arrayanimeapi.vercel.app/api")!
+    let vercelEndpoint = URL(string: "https://anixapi.vercel.app/api")!
     
     func suggestProvider(episode: Episode, forServer server: Anime.ServerIdentifier, withServerName name: String) -> VideoProviderParser? {
         DummyParser.registeredInstance
